@@ -26,6 +26,11 @@ class FilterNMap {
         var list = listOf(Student("Bob", 26) ,Student("Alice", 29),Student("Sam", 22))
         println(list.map (Student::name))
     }
+
+    fun exampleFilterNMap(){
+        var list = listOf(Student("Bob", 26) ,Student("Alice", 29),Student("Sam", 22))
+        println(list.filter { it.age < 30 }.map (Student::name))
+    }
 }
 
 fun main(args: Array<String>) {
@@ -36,4 +41,5 @@ fun main(args: Array<String>) {
     example.exampleMap()
     example.exampleMap1()
     example.exampleMap2()
+    example.exampleFilterNMap()
 }
