@@ -24,4 +24,48 @@ class Foo {
     fun square(x: Int) : Int = x * x
 
     fun cube(num1: Int, square: (x : Int) -> Int): Int = square(num1) * num1
+
+    private val students = listOf(Student("Bob",30), Student("Alice", 52), Student("Sam",25))
+
+    val max = students.maxBy(Student::age)
+
+    val maxLambda = students.maxBy { it.age }
+
+    fun temp() {
+        val list = arrayListOf(1, 2, 3)
+        print(list.joinToString ("#", "@"))
+    }
+
+    fun printMessageWithPrefix(list : Collection<String>, prefix : String) {
+        list.forEach {
+            println("$prefix $it")
+        }
+    }
+
+    fun printProblemStatement(responses: Collection<String>) {
+        var clientError : Int = 0
+        var serverError : Int = 0
+
+        responses.forEach {
+            if(it.startsWith("4")) {
+                clientError++
+            }else if(it.startsWith("5")) {
+                serverError++
+            }
+        }
+
+        print("\n $clientError client errors, $serverError server errors")
+    }
+
+}
+
+fun main(args: Array<String>){
+    println(Foo().max)
+    print(Foo().temp())
+
+    val errors = arrayListOf("403 forbidden", "404 not found","200 OK", "500 server error")
+    Foo().printMessageWithPrefix(errors, "Error:")
+
+    Foo().printProblemStatement(errors)
+    print(Student::age)
 }
